@@ -1,0 +1,10 @@
+C:\Users\User\source\repos\LabelApp\bin\Debug\LabelApp.exe.config
+C:\Users\User\source\repos\LabelApp\bin\Debug\LabelApp.exe
+C:\Users\User\source\repos\LabelApp\bin\Debug\LabelApp.pdb
+C:\Users\User\source\repos\LabelApp\obj\Debug\LabelApp.csprojAssemblyReference.cache
+C:\Users\User\source\repos\LabelApp\obj\Debug\LabelApp.MainForm.resources
+C:\Users\User\source\repos\LabelApp\obj\Debug\LabelApp.Properties.Resources.resources
+C:\Users\User\source\repos\LabelApp\obj\Debug\LabelApp.csproj.GenerateResource.cache
+C:\Users\User\source\repos\LabelApp\obj\Debug\LabelApp.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\LabelApp\obj\Debug\LabelApp.exe
+C:\Users\User\source\repos\LabelApp\obj\Debug\LabelApp.pdb
