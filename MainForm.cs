@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+using Zebra.Sdk.Printer.Discovery;
+using Zebra.Sdk.Comm;
+using Zebra.Sdk.Printer;
 
 namespace LabelApp
 {
@@ -270,7 +273,10 @@ namespace LabelApp
 
       btnSave.Enabled = false;
       btnCancel.Enabled = false;
-      btnDelete.Enabled = false;      
+      btnDelete.Enabled = false;
+
+      gbPrint.Visible = false;
+      txtNumPrint.Value = 1;
     }
 
     private void btnNew_Click(object sender, EventArgs e)
@@ -311,6 +317,7 @@ namespace LabelApp
       dgItem.Rows[i].Selected = true;
       String itemId = dgItem.Rows[i].Cells[0].Value.ToString();
       edit_data(itemId);
+      gbPrint.Visible = true;
     }
 
     private void edit_data(String itemId) {
@@ -384,6 +391,70 @@ namespace LabelApp
       catch (Exception ex)
       {
         MessageBox.Show(ex.ToString(), "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+      }
+    }
+
+    private void btnPrint_Click(object sender, EventArgs e)
+    {
+      int n = (int)txtNumPrint.Value;
+      if (n > 0) {
+        for (int i = 1; i <= n; i++) {
+           print_label();
+        }
+      }
+      
+    }
+
+    private void print_label() {
+      String itemId = txtItemId.Text;
+      String itemName1 = txtItemName1.Text;
+      String itemName2 = txtItemName2.Text;
+      String itemName3 = txtItemName3.Text;
+      String itemChinese = txtItemChinese.Text;
+      //Connection thePrinterConn = new TcpConnection("127.0.0.1", TcpConnection.DEFAULT_ZPL_TCP_PORT);
+      ///Connection thePrinterConn = new UsbConnection("Port_#0001.Hub_#0004");
+      var thePrinterConn = ConnectionBuilder.Build("USB:ZDesigner GT800 (ZPL)");
+      try
+      {
+        // Open the connection - physical connection is established here.
+        thePrinterConn.Open();
+
+        // This example prints "This is a ZPL test." near the top of the label.
+        string zplData = "^XA" +
+          //item id
+          "^FO00,22^A0,38,26^FD"+ itemId + "^FS" +
+          "^FO290,22^A0,38,26^FD"+ itemId + "^FS" +
+          "^FO580,22^A0,38,26^FD"+ itemId + "^FS" +
+          //item name 1
+          "^FO00,55^A0,30,22^FD"+ itemName1 + "^FS" +
+          "^FO290,55^A0,30,22^FD"+ itemName1 + "^FS" +
+          "^FO580,55^A0,30,22^FD"+ itemName1 + "^FS" +
+          //item name 2
+          "^FO00,82^A0,30,22^FD"+ itemName2 + "^FS" +
+          "^FO290,82^A0,30,22^FD"+ itemName2 + "^FS" +
+          "^FO580,82^A0,30,22^FD"+ itemName2 + "^FS" +
+          //item name 3
+          "^FO00,108^A0,30,22^FD"+ itemName3 + "^FS" +
+          "^FO290,108^A0,30,22^FD"+ itemName3 + "^FS" +
+          "^FO580,108^A0,30,22^FD"+ itemName3 + "^FS" +
+          //item chinese
+          "^FO00,138^CI28^A@N,40,40,E:SIMSUN.FNT^FD" + itemChinese + "^FS" +
+          "^FO290,138^CI28^A@N,40,40,E:SIMSUN.FNT^FD" + itemChinese + "^FS" +
+          "^FO580,138^CI28^A@N,40,40,E:SIMSUN.FNT^FD" + itemChinese + "^FS" +
+          "^XZ";
+
+        // Send the data to printer as a byte array.
+        thePrinterConn.Write(Encoding.UTF8.GetBytes(zplData));
+      }
+      catch (ConnectionException e)
+      {
+        // Handle communications error here.
+        Console.WriteLine(e.ToString());
+      }
+      finally
+      {
+        // Close the connection to release resources.
+        thePrinterConn.Close();
       }
     }
   }

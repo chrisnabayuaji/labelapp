@@ -49,9 +49,15 @@
       this.lblItemName1 = new System.Windows.Forms.Label();
       this.txtItemId = new System.Windows.Forms.TextBox();
       this.lblItemId = new System.Windows.Forms.Label();
+      this.gbPrint = new System.Windows.Forms.GroupBox();
+      this.btnPrint = new System.Windows.Forms.Button();
+      this.txtNumPrint = new System.Windows.Forms.NumericUpDown();
+      this.label1 = new System.Windows.Forms.Label();
       this.groupBox1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dgItem)).BeginInit();
       this.gbForm.SuspendLayout();
+      this.gbPrint.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNumPrint)).BeginInit();
       this.SuspendLayout();
       // 
       // groupBox1
@@ -274,11 +280,67 @@
       this.lblItemId.TabIndex = 0;
       this.lblItemId.Text = "Kode Barang";
       // 
+      // gbPrint
+      // 
+      this.gbPrint.Controls.Add(this.btnPrint);
+      this.gbPrint.Controls.Add(this.txtNumPrint);
+      this.gbPrint.Controls.Add(this.label1);
+      this.gbPrint.Location = new System.Drawing.Point(609, 195);
+      this.gbPrint.Name = "gbPrint";
+      this.gbPrint.Size = new System.Drawing.Size(388, 51);
+      this.gbPrint.TabIndex = 7;
+      this.gbPrint.TabStop = false;
+      this.gbPrint.Text = "Form Cetak";
+      this.gbPrint.Visible = false;
+      // 
+      // btnPrint
+      // 
+      this.btnPrint.Location = new System.Drawing.Point(177, 17);
+      this.btnPrint.Name = "btnPrint";
+      this.btnPrint.Size = new System.Drawing.Size(75, 23);
+      this.btnPrint.TabIndex = 12;
+      this.btnPrint.Text = "CETAK";
+      this.btnPrint.UseVisualStyleBackColor = true;
+      this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+      // 
+      // txtNumPrint
+      // 
+      this.txtNumPrint.Location = new System.Drawing.Point(96, 19);
+      this.txtNumPrint.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+      this.txtNumPrint.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+      this.txtNumPrint.Name = "txtNumPrint";
+      this.txtNumPrint.ReadOnly = true;
+      this.txtNumPrint.Size = new System.Drawing.Size(75, 20);
+      this.txtNumPrint.TabIndex = 11;
+      this.txtNumPrint.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+      // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(27, 22);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(66, 13);
+      this.label1.TabIndex = 10;
+      this.label1.Text = "Jumlah Baris";
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1009, 412);
+      this.Controls.Add(this.gbPrint);
       this.Controls.Add(this.gbForm);
       this.Controls.Add(this.groupBox1);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -292,6 +354,9 @@
       ((System.ComponentModel.ISupportInitialize)(this.dgItem)).EndInit();
       this.gbForm.ResumeLayout(false);
       this.gbForm.PerformLayout();
+      this.gbPrint.ResumeLayout(false);
+      this.gbPrint.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.txtNumPrint)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -319,6 +384,10 @@
     private System.Windows.Forms.Button btnCancel;
     private System.Windows.Forms.Button btnSave;
     private System.Windows.Forms.TextBox txtItemIdOld;
+    private System.Windows.Forms.GroupBox gbPrint;
+    private System.Windows.Forms.NumericUpDown txtNumPrint;
+    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.Button btnPrint;
   }
 }
 
